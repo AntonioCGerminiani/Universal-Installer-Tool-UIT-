@@ -53,7 +53,7 @@ chmod +x instalador.sh
 sudo mv instalador.sh /usr/local/bin/uit
 ```
 
-3. Pronto! Agora você pode rodar `uit` em qualquer terminal.
+3. Execute o comando `uit` em qualquer terminal.
 
 ## Como Usar
 
