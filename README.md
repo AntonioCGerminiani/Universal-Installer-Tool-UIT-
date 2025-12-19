@@ -4,6 +4,8 @@ O **UIT** é um script shell wrapper que oferece uma interface visual (TUI - Tex
 
 Inspirado nos instaladores clássicos da NVIDIA e Debian, ele elimina a necessidade de decorar comandos de terminal para descompactar arquivos `.tar.gz`, `.xz`, `.zip` ou instalar `.deb`s.
 
+Desenvolvido após identificar a dificuldade de novos usuários do ecossistema Linux em gerenciar e instalar aplicações que fogem do padrão `apt` ou das lojas de apps nativas.
+
 ## Funcionalidades
 
 - **Interface Visual Interativa:** Menus de seleção e caixas de diálogo baseadas em whiptail.
