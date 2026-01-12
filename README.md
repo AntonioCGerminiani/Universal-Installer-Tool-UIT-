@@ -2,7 +2,7 @@
 
 O **UIT** é um script shell wrapper que oferece uma interface visual (TUI - Text User Interface) para a instalação e extração dos formatos de pacotes mais comuns no ecossistema Linux.
 
-Inspirado nos instaladores clássicos da NVIDIA e Debian, ele elimina a necessidade de decorar comandos de terminal para descompactar arquivos `.tar.gz`, `.xz`, `.zip` ou instalar `.deb`s.
+Inspirado nos instaladores clássicos da NVIDIA e Debian, ele elimina a necessidade de decorar comandos de terminal para descompactar arquivos `.tar.gz`, `.xz`, `.zip`, converter `.rpm`s e instalar `.deb`s.
 
 Desenvolvido após identificar a dificuldade de novos usuários do ecossistema Linux em gerenciar e instalar aplicações que fogem do padrão `apt` ou das lojas de apps nativas.
 
@@ -12,9 +12,13 @@ Desenvolvido após identificar a dificuldade de novos usuários do ecossistema L
 
 - **Detecção Automática:** Reconhece arquivos no diretório atual de acordo com a extensão selecionada.
 
+- **Instalação Inteligente de RPM:** Detecta sua distribuição (Ubuntu, Fedora, OpenSUSE, etc.) e aplica a melhor estratégia: instalação nativa (`dnf`/`zypper`) ou conversão automática (`alien`) para sistemas Debian-based.
+
 - **Suporte Multi-Formato:**
 
   - `.deb` (Instalação nativa via APT)
+ 
+  - `.rpm` (Suporte nativo ou via conversão Alien)
 
   - `.tar.gz` e `.tar.xz` (Extração automática)
 
@@ -37,6 +41,8 @@ O script foi desenhado para Ubuntu/Debian e derivados. Ele verifica e tenta inst
 - `whiptail` (para a interface gráfica)
 
 - `unzip`, `tar` (utilitários de arquivo)
+
+- `alien` (opcional: instalado automaticamente em distros Debian/Ubuntu ao tentar usar `.rpm`)
 
 ## Instalação
 
@@ -75,6 +81,9 @@ Passe o arquivo que deseja instalar como argumento. O script pulará a seleção
 # Instalar um pacote Debian
 sudo uit discord.deb
 
+# Instalar um pacote RPM (Conversão automática se estiver no Ubuntu)
+sudo uit zoom.rpm
+
 # Instalar um arquivo compactado
 sudo uit site-backup.tar.gz
 ```
@@ -91,6 +100,12 @@ uit -help
 Como o UIT gerencia diferentes tipos de arquivos, a remoção varia:
 
 - Arquivos `.deb`: Instalados via APT. Use o comando padrão do sistema: `sudo apt remove nome_do_pacote`
+
+- Arquivos `.rpm`:
+
+  - Se instalados nativamente (Fedora/OpenSUSE): `sudo dnf remove pacote` ou `sudo zypper remove pacote`.
+
+  - Se convertidos via Alien (Ubuntu/Debian): O pacote foi instalado no sistema, então use `sudo apt remove nome_do_pacote`.
 
 - Arquivos `.tar.gz`, `.zip`, `.xz`, `.AppImage`: Estes são instalados "manualmente" na pasta de destino que você escolheu (Padrão: `/opt`). Para desinstalar, basta remover a pasta.
 
