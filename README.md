@@ -50,13 +50,13 @@ Para usar o `uit` como um comando nativo do sistema (acessível de qualquer past
 
 1. Baixe o script e dê permissão de execução:
 ```bash
-chmod +x instalador.sh
+chmod +x universal_installer.sh.sh
 ```
 
 2. Instale no sistema (renomeando para uit):
 
 ```bash
-sudo mv instalador.sh /usr/local/bin/uit
+sudo mv universal_installer.sh /usr/local/bin/uit
 ```
 
 3. Execute o comando `uit` em qualquer terminal.
